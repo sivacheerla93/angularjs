@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="myModule">
+
+<head>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+
+    <script>
+        // Method 1
+        // //Create the module
+        // var myApp = angular.module("myModule", []);
+
+        // //Create the controller
+        // var myController = function ($scope) {
+        //     $scope.message = "AngularJS Tutorial";
+        // }
+
+        // // Register the controller with the module
+        // myApp.controller("myController", myController);
+
+
+        // Method 2
+        //Create module
+        var myApp = angular.module("myModule", []);
+
+        // Create & Register controller with the module
+        myApp.controller("myController", function ($scope) {
+            $scope.message = "AngularJS Tutorial";
+        });
+    </script>
+</head>
+
+<body>
+    <div ng-controller="myController">
+        {{ message }}
+    </div>
+</body>
+
+</html>

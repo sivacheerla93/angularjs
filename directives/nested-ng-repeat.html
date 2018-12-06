@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+
+    <script>
+        var app = angular
+            .module("myModule", [])
+            .controller("myController", function ($scope) {
+
+                var countries = [{
+                        name: "UK",
+                        cities: [{
+                                name: "London"
+                            },
+                            {
+                                name: "Birmingham"
+                            },
+                            {
+                                name: "Manchester"
+                            }
+                        ]
+                    },
+                    {
+                        name: "USA",
+                        cities: [{
+                                name: "Los Angeles"
+                            },
+                            {
+                                name: "Chicago"
+                            },
+                            {
+                                name: "Houston"
+                            }
+                        ]
+                    },
+                    {
+                        name: "India",
+                        cities: [{
+                                name: "Hyderabad"
+                            },
+                            {
+                                name: "Chennai"
+                            },
+                            {
+                                name: "Mumbai"
+                            }
+                        ]
+                    }
+                ];
+
+                $scope.countries = countries;
+            });
+    </script>
+</head>
+
+<body ng-app="myModule">
+    <div ng-controller="myController">
+        <ul ng-repeat="country in countries">
+            <li>
+                {{country.name}}
+                <ul>
+                    <li ng-repeat="city in country.cities">
+                        {{city.name}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="myModule">
+
+<head>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+
+    <script>
+        var myApp = angular
+            .module("myModule", [])
+            .controller("myController", function ($scope) {
+                var country = {
+                    name: "United States of America",
+                    capital: "Washington, D.C.",
+                    flag: "../images/usa-flag.png"
+                };
+                $scope.country = country;
+            });
+    </script>
+</head>
+
+<body>
+    <div ng-controller="myController">
+        <div>
+            Country : {{ country.name }}
+        </div>
+        <div>
+            Capital : {{ country.capital }}
+        </div>
+        <div>
+            <img ng-src="{{country.flag}}" alt="{{ country.name + ' Flag' }}" />
+        </div>
+    </div>
+</body>
+
+</html>

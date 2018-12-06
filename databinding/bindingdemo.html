@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+    <script>
+        var app = angular
+            .module("myModule", [])
+            .controller("myController", function ($scope) {
+                var employee = {
+                    firstName: "Ben",
+                    lastName: "Hastings",
+                    gender: "Male"
+                };
+
+                $scope.employee = employee;
+            });
+    </script>
+</head>
+
+<body ng-app="myModule">
+    <div ng-controller="myController">
+        <table>
+            <tr>
+                <td>
+                    First Name
+                </td>
+                <td>
+                    <input type="text" placeholder="Firstname" ng-model="employee.firstName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name
+                </td>
+                <td>
+                    <input type="text" placeholder="Lastname" ng-model="employee.lastName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gender
+                </td>
+                <td>
+                    <input type="text" placeholder="Gender" ng-model="employee.gender" />
+                </td>
+            </tr>
+        </table>
+
+        <br />
+
+        <table>
+            <tr>
+                <td>
+                    First Name
+                </td>
+                <td>
+                    {{ employee.firstName }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name
+                </td>
+                <td>
+                    {{ employee.lastName }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gender
+                </td>
+                <td>
+                    {{ employee.gender }}
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
