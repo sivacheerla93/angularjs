@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        th {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+
+    <script>
+        var app = angular
+            .module("myModule", [])
+            .controller("myController", function ($scope, $http) {
+                $scope.username = "sivacheerla93";
+                $scope.getRepos = function() {
+                    $http.get("https://api.github.com/users/"+$scope.username+"/repos")
+                    .then(function (response) {
+                        $scope.repos = response.data;
+                    });
+                }
+            });
+    </script>
+</head>
+
+<body ng-app="myModule">
+    <div ng-controller="myController">
+        <input type="text" ng-model="username" />
+        <button ng-click="getRepos()">Get Repos</button>
+        <br />
+        <br />
+        Repositories of User:
+        <ul>
+            <li ng-repeat="repo in repos">
+                {{repo.name}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

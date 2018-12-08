@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+    <script>
+        var app = angular
+            .module("myModule", [])
+            .controller("myController", function ($scope) {
+    
+                var employees = [
+                    { name: "Ben", gender: "Male", city: "London", salary: 55000 },
+                    { name: "Sara", gender: "Female", city: "Chennai", salary: 68000 },
+                    { name: "Mark", gender: "Male", city: "Chicago", salary: 57000 },
+                    { name: "Pam", gender: "Female", city: "London", salary: 53000 },
+                    { name: "Todd", gender: "Male", city: "Chennai", salary: 60000 }
+                ];
+    
+                $scope.employees = employees;
+            });
+        </script>
+</head>
+
+<body ng-app="myModule">
+    <div ng-controller="myController">
+        <input type="checkbox" ng-model="showSalary" />Show Salary
+        <br />
+        <br />
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>City</th>
+                    <th ng-show="showSalary">Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td> {{ employee.name }} </td>
+                    <td> {{ employee.gender}} </td>
+                    <td> {{ employee.city}} </td>
+                    <td ng-show="showSalary"> {{ employee.salary }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
