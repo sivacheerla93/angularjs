@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="demoApp">
+
+<head>
+    <title></title>
+    <script src="../lib/angularjs-1.7.5.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        div {
+            display: block;
+            font-size: xx-large;
+            height: 350px;
+            width: 400px;
+            border: 1px solid black;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+    </style>
+    <script>
+        var demoApp = angular.module("demoApp", [])
+            .controller("countryController",
+                function ($scope, $location, $anchorScroll) {
+
+                    var countries = [{
+                            name: "UK",
+                            cities: [{
+                                    name: "London"
+                                },
+                                {
+                                    name: "Birmingham"
+                                },
+                                {
+                                    name: "Manchester"
+                                }
+                            ]
+                        },
+                        {
+                            name: "USA",
+                            cities: [{
+                                    name: "Los Angeles"
+                                },
+                                {
+                                    name: "Chicago"
+                                },
+                                {
+                                    name: "Houston"
+                                }
+                            ]
+                        },
+                        {
+                            name: "India",
+                            cities: [{
+                                    name: "Hyderabad"
+                                },
+                                {
+                                    name: "Chennai"
+                                },
+                                {
+                                    name: "Mumbai"
+                                }
+                            ]
+                        }
+                    ];
+
+                    $scope.countries = countries;
+
+                    $scope.scrollTo = function (countryName) {
+                        $location.hash(countryName);
+                        $anchorScroll();
+                    }
+
+                });
+    </script>
+</head>
+
+<body ng-controller="countryController">
+    <span ng-repeat="country in countries">
+        <button ng-click="scrollTo(country.name)">{{country.name}}</button>
+    </span>
+    <br /><br />
+    <div class="containerDiv">
+        <fieldset ng-repeat="country in countries" id="{{country.name}}">
+            <legend>{{country.name}}</legend>
+            <ul>
+                <li ng-repeat="city in country.cities">
+                    {{city.name}}
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+
+</html>

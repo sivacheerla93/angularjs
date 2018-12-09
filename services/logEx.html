@@ -7,14 +7,16 @@
     <script>
         var app = angular
             .module("myModule", [])
-            .controller("myController", function ($scope, $http) {
+            .controller("myController", function ($scope, $http, $log) {
                 $scope.username = "sivacheerla93";
                 $scope.getRepos = function() {
                     $http.get("https://api.github.com/users/"+$scope.username+"/repos")
                     .then(function (response) {
                         $scope.repos = response.data;
+                        $log.info(response);
                     }, function(reason){
                         $scope.error = reason.data;
+                        $log.info(reason);
                     });
                 }
             });
@@ -28,15 +30,10 @@
         <br />
         <br />
         <div ng-if="repos">
-            Repositories of User:
-            <ul>
-                <li ng-repeat="repo in repos">
-                    {{repo.name}}
-                </li>
-            </ul>
+            Got response! Open the console to see the response!!
         </div>
         <div ng-if="error">
-            Error: {{error.message}}
+            Got error! Open the console to see the error!!
         </div>
     </div>
 </body>
