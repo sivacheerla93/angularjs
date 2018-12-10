@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../lib/angularjs-1.7.5.js"></script>
+
+    <script>
+        var app = angular
+            .module("Demo", [])
+            .controller("countryController", function () {
+                this.name = "India";
+            })
+            .controller("stateController", function () {
+                this.name = "Maharashtra";
+            })
+            .controller("cityController", function () {
+                this.name = "Mumbai";
+            });
+    </script>
+</head>
+
+<body ng-app="Demo">
+    <!-- Normal way of doing -->
+    <!-- <div ng-controller="countryController">
+        {{name}}
+        <div ng-controller="stateController">
+            {{name}}
+            <div ng-controller="cityController">
+                {{name}}
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Scope with index way of doing -->
+    <!-- <div ng-controller="countryController">
+        {{name}}
+        <div ng-controller="stateController">
+            {{$parent.name}} - {{name}}
+            <div ng-controller="cityController">
+                {{$parent.$parent.name}} - {{$parent.name}} - {{name}}
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Syntax way of doing -->
+    <div ng-controller="countryController as countryCtrl">
+        {{countryCtrl.name}}
+        <div ng-controller="stateController as stateCtrl">
+            {{countryCtrl.name}} - {{stateCtrl.name}}
+            <div ng-controller="cityController as cityCtrl">
+                {{countryCtrl.name}} - {{stateCtrl.name}} - {{cityCtrl.name}}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
