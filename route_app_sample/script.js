@@ -25,7 +25,6 @@ var app = angular
                 controllerAs: "studentsSearchCtrl"
 
             })
-
             .otherwise({
                 redirectTo: "/home"
             })
@@ -42,7 +41,7 @@ var app = angular
 
         $scope.$on("$routeChangeStart", function (event, next, current) {
             if (!confirm("Are you sure you want to navigate away from this page to " +
-                    next.$$route.originalPath)) {
+                next.$$route.originalPath)) {
                 event.preventDefault();
             }
         });
